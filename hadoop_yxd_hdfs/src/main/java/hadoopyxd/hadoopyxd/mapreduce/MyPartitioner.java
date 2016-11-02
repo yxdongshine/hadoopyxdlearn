@@ -23,7 +23,6 @@ public class MyPartitioner extends Partitioner<LongWritable, IntWritable>{
 	public int getPartition(LongWritable arg0, IntWritable arg1, int arg2) {
 		// TODO Auto-generated method stub
 		
-		
 		if( arg0.get() % 2 == 0) {  
 			arg0.set(0);  
             return 0;  
