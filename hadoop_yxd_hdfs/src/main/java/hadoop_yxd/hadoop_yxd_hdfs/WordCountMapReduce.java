@@ -3,6 +3,7 @@ package hadoop_yxd.hadoop_yxd_hdfs;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -97,6 +98,11 @@ public class WordCountMapReduce {
 
 		// output
 		Path outPath = new Path(args[1]);
+		FileSystem fs = getFileSystem();
+		if(fs.exists(outPath)){
+			//delete
+			fs.delete(outPath, true);
+		}
 		FileOutputFormat.setOutputPath(job, outPath);
 
 		// Mapper
@@ -115,12 +121,24 @@ public class WordCountMapReduce {
 		return isSuccess ? 0 : 1;
 	}
 
+	
+	public static FileSystem getFileSystem(){
+		FileSystem fs = null ;
+		Configuration configuration = new Configuration();
+		try {
+			fs = FileSystem.get(configuration);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fs;
+	}
 	public static void main(String[] args) throws Exception {
 
 		// 传递两个参数，设置路径
 		args = new String[] {
-				"hdfs://hadoop-senior01.ibeifeng.com:8020/user/beifeng/input",
-				"hdfs://hadoop-senior01.ibeifeng.com:8020/user/beifeng/output3" };
+				"hdfs://hadoop1:9000/yxd/yarn",
+				"hdfs://hadoop1:9000/yxd/test5" };
 
 		// run job
 		int status = new WordCountMapReduce().run(args);
