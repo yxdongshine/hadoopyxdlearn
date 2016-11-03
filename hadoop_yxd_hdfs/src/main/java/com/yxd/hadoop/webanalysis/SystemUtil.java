@@ -9,6 +9,17 @@ public class SystemUtil {
 	
 	public static final String KEY = "total value";
 	
+	public enum pvCounter{
+		MISSING,
+		URL_NULL	
+	}
+	
+	public static final String PV_COUNTER  = "PV_COUNTER";
+	
+	public static final String DATA_MISS  = "DATA_MISS";
+
+	public static final String URL_MISSING  = "URL_MISSING";
+
 	/**
 	 * get conf
 	 * @return

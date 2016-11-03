@@ -15,17 +15,21 @@ public class PvMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
 	public static int OK_LENGTH = 16;
 	private Text outKey = new Text(SystemUtil.KEY);
 	private IntWritable outMap = new IntWritable(1);
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void map(LongWritable key, Text value,
-			@SuppressWarnings("rawtypes") org.apache.hadoop.mapreduce.Mapper.Context context)
+			 Context context)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
          String[] arr  = value.toString().split("\t");
+         
          if(arr!=null&&arr.length>=OK_LENGTH){
         	 if(arr[1]!=null&&arr[1].trim().length()>0){//判断url存在
             	 context.write(outKey, outMap);
+        	 }else{
+        		 context.getCounter(SystemUtil.PV_COUNTER,SystemUtil.URL_MISSING).increment(1L);
         	 }
+         }else{
+        	 context.getCounter(SystemUtil.PV_COUNTER,SystemUtil.DATA_MISS).increment(1L);
          }
        
 	

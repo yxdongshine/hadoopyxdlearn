@@ -10,7 +10,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
+import org.apache.hadoop.mapreduce.Counters;
 import com.yxd.hadoop.webanalysis.SystemUtil;
 import com.yxd.hadoop.webanalysis.PvReducer;
 import com.yxd.hadoop.webanalysis.PvMapper;
@@ -43,6 +43,15 @@ public class PvRun {
         FileOutputFormat.setOutputPath(job, outPath);
         
         re = job.waitForCompletion(true)?0:1;
+
+		//get counter 
+		Counters counters =job.getCounters();
+		
+		long dataCounter = counters.getGroup(SystemUtil.PV_COUNTER).findCounter(SystemUtil.DATA_MISS).getValue();
+		long urlCounter = counters.getGroup(SystemUtil.PV_COUNTER).findCounter(SystemUtil.URL_MISSING).getValue();
+
+		System.out.println("&&&&&datacounter&&&&"+dataCounter);
+		System.out.println("&&&&&urlCounter&&&&"+urlCounter);
 		return re ;
 	}
 
@@ -51,12 +60,11 @@ public class PvRun {
 
 		// 传递两个参数，设置路径
 		args = new String[] {
-				"hdfs://hadoop1:9000/yxd/yarn",
+				"hdfs://hadoop1:9000/yxd/pv/",
 				"hdfs://hadoop1:9000/yxd/test6" };
 
 		// run job
 		int status = new PvRun().run(args);
-
 		System.exit(status);
 	}
 }
