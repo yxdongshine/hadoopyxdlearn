@@ -14,8 +14,9 @@ public class PvReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
 	
 	private IntWritable sum =new IntWritable();
 	private int sumInt  =0 ;
+	@SuppressWarnings("unchecked")
 	protected void reduce(Text arg0, Iterable<IntWritable> arg1,
-			org.apache.hadoop.mapreduce.Reducer.Context arg2)
+			@SuppressWarnings("rawtypes") org.apache.hadoop.mapreduce.Reducer.Context arg2)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
         
@@ -23,6 +24,6 @@ public class PvReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
 			sumInt += intWritable.get();
 		}
 		sum.set(sumInt);
-		arg2.write("total value",sum);
+		arg2.write(SystemUtil.KEY,sum);
 	}
 }

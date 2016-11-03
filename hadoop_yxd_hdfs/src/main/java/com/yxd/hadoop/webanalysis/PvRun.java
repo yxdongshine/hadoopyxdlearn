@@ -10,11 +10,13 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
 import com.yxd.hadoop.webanalysis.SystemUtil;
 import com.yxd.hadoop.webanalysis.PvReducer;
 import com.yxd.hadoop.webanalysis.PvMapper;
 public class PvRun {
 	
+	@SuppressWarnings("deprecation")
 	public int run (String[] args) throws Exception{
 		int re = 0;
 		Configuration conf = SystemUtil.getConf();

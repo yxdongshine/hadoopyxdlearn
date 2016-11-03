@@ -7,6 +7,8 @@ import org.apache.hadoop.fs.FileSystem;
 
 public class SystemUtil {
 	
+	public static final String KEY = "total value";
+	
 	/**
 	 * get conf
 	 * @return
