@@ -33,7 +33,8 @@ public class Run {
 		job.setJarByClass(Run.class);
 		job.setMapperClass(JoinMapper.class);
 		job.setMapOutputKeyClass(Long.class);
-		job.setMapOutputValueClass(JoinDataFormat.class);
+		job.setMapOutputValueClass(JoinDataFormat.class); 
+		
 		//开始设置reduce
 		job.setReducerClass(JoinReduce.class);
 		job.setOutputKeyClass(NullWritable.class);
