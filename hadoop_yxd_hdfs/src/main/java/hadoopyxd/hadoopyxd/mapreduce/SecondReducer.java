@@ -31,7 +31,7 @@ public class SecondReducer extends Reducer<SecondSortClass, IntWritable, Text, T
 			sb.append(","+intWritable);
 		}
 		
-		key.set(arg0.getSecond()+"");
+		key.set(arg0.getFirst());
 		value.set(sb.toString());
 		//输出
 		arg2.write(key,value);

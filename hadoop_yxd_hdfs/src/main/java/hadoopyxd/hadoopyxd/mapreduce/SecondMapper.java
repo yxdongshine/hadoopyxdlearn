@@ -31,7 +31,7 @@ public class SecondMapper extends Mapper<LongWritable, Text, SecondSortClass, In
 		String[] valueArr = value.toString().split(",");
 		if(valueArr.length>=3){
 			iw3.set(Integer.parseInt(valueArr[2]));
-			SecondSortClass ssc =new SecondSortClass(valueArr[0], Integer.parseInt(valueArr[1]));
+			SecondSortClass ssc =new SecondSortClass(valueArr[1], Integer.parseInt(valueArr[2]));
 			context.write(ssc, iw3);
 		}
 	}
