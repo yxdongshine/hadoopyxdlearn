@@ -35,10 +35,10 @@ public class JoinMapper extends Mapper<LongWritable, Text, LongWritable, JoinDat
 				outKey.set(Long.parseLong(valueArr[0]));//0 一定是用户编号
 				if(valueArr.length==3){//标识用户信息
 					String outValue = valueArr[1]+","+valueArr[2];
-					new JoinDataFormat(Util.MARK_CINFO, outValue);
+					jdf = new JoinDataFormat(Util.MARK_CINFO, outValue);
 				}else if (valueArr.length==4){//订单信息
 					String outOrderValue = valueArr[2]+","+valueArr[3];
-					new JoinDataFormat(Util.MARK_CORDER, outOrderValue);
+					jdf = new JoinDataFormat(Util.MARK_CORDER, outOrderValue);
 				}
 				
 				//输出

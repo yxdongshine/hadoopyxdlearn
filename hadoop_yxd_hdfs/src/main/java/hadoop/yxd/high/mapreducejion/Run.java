@@ -7,6 +7,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -32,7 +33,7 @@ public class Run {
 		//制定运行主
 		job.setJarByClass(Run.class);
 		job.setMapperClass(JoinMapper.class);
-		job.setMapOutputKeyClass(Long.class);
+		job.setMapOutputKeyClass(LongWritable.class);
 		job.setMapOutputValueClass(JoinDataFormat.class); 
 		
 		//开始设置reduce
