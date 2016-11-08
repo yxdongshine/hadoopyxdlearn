@@ -40,6 +40,11 @@ public class Run {
 		job.setOutputKeyClass(NullWritable.class);
 		job.setOutputValueClass(Text.class);
 		
+		//添加参数
+		args = new String[]{
+                "/yxd/join",
+                "yxd/test2"
+		};
 		
 		//
 		FileInputFormat.addInputPaths(job, args[0]);
