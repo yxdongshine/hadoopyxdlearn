@@ -27,7 +27,7 @@ public class Run {
         //第一步获取configuration
 		Configuration cf = new Configuration();
 		Job job = new Job(cf, "run");
-		//制定运行主
+		//制定运行主SecondSortClass
 		job.setJarByClass(Run.class);
 		job.setMapperClass(SecondMapper.class);
 		job.setMapOutputKeyClass(SecondSortClass.class);
@@ -36,8 +36,8 @@ public class Run {
 		//map阶段开始排序
 		job.setSortComparatorClass(SortComparator.class);
 		//进入reduce阶段开始分组
-		job.setCombinerKeyGroupingComparatorClass(GroupingComparator.class);
-		
+		job.setGroupingComparatorClass(GroupingComparator.class);
+		     
 		//开始设置reduce
 		job.setReducerClass(SecondReducer.class);
 		job.setOutputKeyClass(Text.class);

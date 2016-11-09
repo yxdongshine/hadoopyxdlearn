@@ -18,13 +18,14 @@ import org.apache.hadoop.mapreduce.Reducer;
  */
 public class SecondReducer extends Reducer<SecondSortClass, IntWritable, Text, Text>{
 
-	 private Text key = new Text();  
-	 private Text value = new Text(); 
 	@Override
 	protected void reduce(SecondSortClass arg0, Iterable<IntWritable> arg1,
-			Reducer<SecondSortClass, IntWritable, Text, Text>.Context arg2)
+			Context arg2)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
+
+		 Text key = new Text();  
+		 Text value = new Text(); 
         //将后面值组合 
 		StringBuffer sb =new StringBuffer();
 		for (IntWritable intWritable : arg1) {

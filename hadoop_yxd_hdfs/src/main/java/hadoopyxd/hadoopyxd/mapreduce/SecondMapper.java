@@ -24,7 +24,7 @@ public class SecondMapper extends Mapper<LongWritable, Text, SecondSortClass, In
 	protected void map(
 			LongWritable key,
 			Text value,
-			Mapper<LongWritable, Text, SecondSortClass, IntWritable>.Context context)
+			Context context)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 

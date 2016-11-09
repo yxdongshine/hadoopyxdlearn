@@ -1,6 +1,7 @@
 
 package hadoopyxd.hadoopyxd.mapreduce;  
 
+import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.WritableComparator;
 
 /** 
@@ -12,18 +13,17 @@ import org.apache.hadoop.io.WritableComparator;
  * @version   
  * @see       
  */
-public class GroupingComparator extends WritableComparator{
+public class GroupingComparator implements RawComparator<SecondSortClass>{
 	public GroupingComparator() {
 		// TODO Auto-generated constructor stub
 		 //默认偏移量排序  这里采用自定义排序
-		super(SecondSortClass.class, true);
+		super();
 	}
 	
 	/**
 	 * 实现两个对象key之间的比较
 	 */
-	@Override
-	public int compare(Object a, Object b) {
+	public int compare(SecondSortClass a, SecondSortClass b) {
 		// TODO Auto-generated method stub
 		int re = 0; 
 		SecondSortClass a1 = (SecondSortClass) a;
@@ -34,5 +34,22 @@ public class GroupingComparator extends WritableComparator{
 		
 		return re;
 	}
+
+	/** 
+     * @param arg0 表示第一个参与比较的字节数组 
+     * @param arg1 表示第一个参与比较的字节数组的起始位置 
+     * @param arg2 表示第一个参与比较的字节数组的偏移量 
+     *  
+     * @param arg3 表示第二个参与比较的字节数组 
+     * @param arg4 表示第二个参与比较的字节数组的起始位置 
+     * @param arg5 表示第二个参与比较的字节数组的偏移量 
+     */  
+    public int compare(byte[] arg0, int arg1, int arg2, byte[] arg3,  
+            int arg4, int arg5) {  
+        return WritableComparator.compareBytes(arg0, arg1, 0, arg3, arg4, 0);  
+    }  
+
+
+
 }
   
