@@ -43,7 +43,11 @@ public class Run {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 		
-		
+		//添加参数
+		args = new String[]{
+                "/yxd/sort.txt",
+                "yxd/test3"
+		};
 		//
 		FileInputFormat.addInputPaths(job, args[0]);
 		

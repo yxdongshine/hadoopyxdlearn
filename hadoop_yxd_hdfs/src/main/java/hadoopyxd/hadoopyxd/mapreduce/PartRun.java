@@ -47,6 +47,11 @@ public class PartRun {
 		//指定reduce数目
 		job.setNumReduceTasks(2);
 		
+		//添加参数
+		args = new String[]{
+                "/yxd/sort.txt",
+                "yxd/test4"
+		};
 		//
 		FileInputFormat.addInputPaths(job, args[0]);
 		
