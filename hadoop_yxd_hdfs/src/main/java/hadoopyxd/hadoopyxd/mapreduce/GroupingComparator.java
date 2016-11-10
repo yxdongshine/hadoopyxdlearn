@@ -13,7 +13,7 @@ import org.apache.hadoop.io.WritableComparator;
  * @version   
  * @see       
  */
-public class GroupingComparator implements RawComparator<SecondSortClass>{
+public class GroupingComparator implements RawComparator<SecondGroupSortClass>{
 	public GroupingComparator() {
 		// TODO Auto-generated constructor stub
 		 //默认偏移量排序  这里采用自定义排序
@@ -23,11 +23,11 @@ public class GroupingComparator implements RawComparator<SecondSortClass>{
 	/**
 	 * 实现两个对象key之间的比较
 	 */
-	public int compare(SecondSortClass a, SecondSortClass b) {
+	public int compare(SecondGroupSortClass a, SecondGroupSortClass b) {
 		// TODO Auto-generated method stub
 		int re = 0; 
-		SecondSortClass a1 = (SecondSortClass) a;
-		SecondSortClass b1 = (SecondSortClass) b;
+		SecondGroupSortClass a1 = (SecondGroupSortClass) a;
+		SecondGroupSortClass b1 = (SecondGroupSortClass) b;
 
 		//比较第一个元素
 		re = a1.getFirst().compareTo(b1.getFirst());
@@ -46,7 +46,7 @@ public class GroupingComparator implements RawComparator<SecondSortClass>{
      */  
     public int compare(byte[] arg0, int arg1, int arg2, byte[] arg3,  
             int arg4, int arg5) {  
-        return WritableComparator.compareBytes(arg0, arg1, 0, arg3, arg4, 0);  
+        return WritableComparator.compareBytes(arg0, arg1, 8, arg3, arg4, 8);  
     }  
 
 

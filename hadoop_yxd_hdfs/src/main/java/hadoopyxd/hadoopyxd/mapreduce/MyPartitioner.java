@@ -14,13 +14,13 @@ import org.apache.hadoop.mapreduce.Partitioner;
  * @version   
  * @see       
  */
-public class MyPartitioner extends Partitioner<LongWritable, IntWritable>{
+public class MyPartitioner extends Partitioner<IntWritable,LongWritable>{
 
 	/**
 	 * 根据每一行的偏移量 奇偶数来分区
 	 */
 	@Override
-	public int getPartition(LongWritable arg0, IntWritable arg1, int arg2) {
+	public int getPartition(IntWritable arg0,LongWritable arg1,  int arg2) {
 		// TODO Auto-generated method stub
 		
 		if( arg0.get() % 2 == 0) {  
