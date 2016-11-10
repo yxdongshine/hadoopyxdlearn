@@ -17,7 +17,6 @@ public class GroupingComparator implements RawComparator<SecondGroupSortClass>{
 	public GroupingComparator() {
 		// TODO Auto-generated constructor stub
 		 //默认偏移量排序  这里采用自定义排序
-		super();
 	}
 	
 	/**
@@ -46,7 +45,7 @@ public class GroupingComparator implements RawComparator<SecondGroupSortClass>{
      */  
     public int compare(byte[] arg0, int arg1, int arg2, byte[] arg3,  
             int arg4, int arg5) {  
-        return WritableComparator.compareBytes(arg0, arg1, 8, arg3, arg4, 8);  
+        return WritableComparator.compareBytes(arg0, arg1, 7, arg3, arg4,7);  
     }  
 
 

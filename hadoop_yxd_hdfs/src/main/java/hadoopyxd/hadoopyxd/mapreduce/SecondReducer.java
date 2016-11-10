@@ -30,6 +30,7 @@ public class SecondReducer extends Reducer<SecondSortClass, IntWritable, Text, T
 		StringBuffer sb =new StringBuffer();
 		for (IntWritable intWritable : arg1) {
 			sb.append(","+intWritable);
+			System.out.println(intWritable);
 		}
 		
 		key.set(arg0.getFirst());

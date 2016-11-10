@@ -34,7 +34,7 @@ public class Run {
 		job.setMapOutputValueClass(IntWritable.class);
 		
 		//map阶段开始排序
-		job.setSortComparatorClass(SortComparator.class);
+		//job.setSortComparatorClass(SortComparator.class);
 		//进入reduce阶段开始分组
 		job.setGroupingComparatorClass(GroupingComparator.class);
 		     
