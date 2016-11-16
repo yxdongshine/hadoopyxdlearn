@@ -9,17 +9,17 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 /** 
- * ClassName:SecondMapper <br/> 
- * Function: TODO (). <br/> 
+ * ClassName:PartMapper <br/> 
+ * Function: TODO (分区mapper). <br/> 
  * Reason:   TODO (). <br/> 
- * Date:     2016年11月2日 下午3:28:58 <br/> 
+ * Date:     2016年11月8日 下午6:19:38 <br/> 
  * @author   yxd 
  * @version   
  * @see       
  */
-public class SecondMapper extends Mapper<LongWritable, Text, SecondSortClass, IntWritable>{
+public class PartMapper extends Mapper<LongWritable, Text, IntWritable, LongWritable> {
 
-	private IntWritable iw3 = new IntWritable();
+	int rowNumbe = 0;
 	@Override
 	protected void map(
 			LongWritable key,
@@ -27,13 +27,14 @@ public class SecondMapper extends Mapper<LongWritable, Text, SecondSortClass, In
 			Context context)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-
-		String[] valueArr = value.toString().split(",");
+        rowNumbe++;//行号增加1 
+        
+    	String[] valueArr = value.toString().split(",");
 		if(valueArr.length>=3){
-			iw3.set(Integer.parseInt(valueArr[2]));
-			SecondSortClass ssc =new SecondSortClass(valueArr[1], Integer.parseInt(valueArr[2]));
-			context.write(ssc, iw3);
+			long  cost = Long.parseLong(valueArr[2]);
+			context.write(new IntWritable(rowNumbe), new LongWritable(cost));
 		}
+        
 	}
 }
   

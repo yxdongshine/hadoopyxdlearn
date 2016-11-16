@@ -1,11 +1,14 @@
 
-package hadoopyxd.hadoopyxd.mapreduce;  
+package hadoop.yxd.high.mapreducejion;  
 
+import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -27,27 +30,23 @@ public class Run {
         //第一步获取configuration
 		Configuration cf = new Configuration();
 		Job job = new Job(cf, "run");
-		//制定运行主SecondSortClass
+		//制定运行主
 		job.setJarByClass(Run.class);
-		job.setMapperClass(SecondMapper.class);
-		job.setMapOutputKeyClass(SecondSortClass.class);
-		job.setMapOutputValueClass(IntWritable.class);
+		job.setMapperClass(JoinMapper.class);
+		job.setMapOutputKeyClass(LongWritable.class);
+		job.setMapOutputValueClass(JoinDataFormat.class); 
 		
-		//map阶段开始排序
-		//job.setSortComparatorClass(SortComparator.class);
-		//进入reduce阶段开始分组
-		job.setGroupingComparatorClass(GroupingComparator.class);
-		     
 		//开始设置reduce
-		job.setReducerClass(SecondReducer.class);
-		job.setOutputKeyClass(Text.class);
+		job.setReducerClass(JoinReduce.class);
+		job.setOutputKeyClass(NullWritable.class);
 		job.setOutputValueClass(Text.class);
 		
 		//添加参数
 		args = new String[]{
-                "/yxd/sort.txt",
-                "yxd/test3"
+                "/yxd/join",
+                "yxd/test2"
 		};
+		
 		//
 		FileInputFormat.addInputPaths(job, args[0]);
 		
