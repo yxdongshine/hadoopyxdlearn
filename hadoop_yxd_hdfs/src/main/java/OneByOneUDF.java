@@ -1,6 +1,7 @@
 
 
 import org.apache.hadoop.hive.ql.exec.UDF;
+import org.apache.hadoop.io.Text;
 
 
 /***
@@ -24,20 +25,20 @@ public class OneByOneUDF extends UDF {
 	 * @author yxd 
 	 * @param inStr
 	 * @return
-	 */
-	public String evaluate(String inStr){
+	 */           
+	public Text evaluate(Text inStr){
 		StringBuffer outStr = new StringBuffer("\"");
-		if(inStr!=null&&inStr.trim().length()>0){
-			outStr.append(inStr.trim()+"\"");
+		if(inStr!=null&&inStr.toString().trim().length()>0){
+			outStr.append(inStr.toString().trim()+"\"");
 		}
 		
-		return outStr.toString();
+		return new Text(outStr.toString());
 	}
 	
 	
 	public static void main(String[] args) {
 		String inStr = "0.0.0.0";
-		String outStr= new OneByOneUDF().evaluate(inStr);
+		String outStr= new OneByOneUDF().evaluate(new Text(inStr)).toString();
 		System.out.println(outStr);
 	}
 }
