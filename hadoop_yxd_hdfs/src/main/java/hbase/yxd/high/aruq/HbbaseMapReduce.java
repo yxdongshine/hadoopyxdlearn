@@ -21,10 +21,12 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import com.yxd.hadoop.webanalysis.SystemUtil;
+
 public class HbbaseMapReduce extends Configured implements Tool{
 
 	static final String FAIMILY_C = "info";
-	static final String FAIMILY_COLL = "info:name";
+	static final String FAIMILY_COLL = "name";
 	static final String FAIMILY_C_OTHER = "base";
 
 	public static class hbaseMapper extends TableMapper<ImmutableBytesWritable, Put>{
@@ -50,9 +52,10 @@ public class HbbaseMapReduce extends Configured implements Tool{
 						Bytes.toString(CellUtil.cloneValue(cell))
 						);*/
 				// just get name coll 
-				if(CellUtil.cloneFamily(cell).equals(FAIMILY_C)){
-					if(CellUtil.cloneQualifier(cell).equals(FAIMILY_COLL)){
+				if(Bytes.toString(CellUtil.cloneFamily(cell)).equals(FAIMILY_C)){
+					if(Bytes.toString(CellUtil.cloneQualifier(cell)).equals(FAIMILY_COLL)){
 						outPut.add(cell);
+						 context.getCounter("looked","this right").increment(1L);
 					}
 				}
 			}
@@ -73,6 +76,8 @@ public class HbbaseMapReduce extends Configured implements Tool{
 				Put put = (Put) iterator.next();
 				List<Cell> cellList =put.get(Bytes.toBytes(FAIMILY_C),Bytes.toBytes(FAIMILY_COLL));
 				if(cellList!=null){
+					 context.getCounter("write","start ").increment(1L);
+
 					for (Iterator iterator2 = cellList.iterator(); iterator2
 							.hasNext();) {
 						Cell cell = (Cell) iterator2.next();
