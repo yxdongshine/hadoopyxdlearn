@@ -89,7 +89,7 @@ public class HbaseClient {
 	}
 	
 	public static void main(String[] args) {
-		
+		scanTable("student:stu_info");
 	}
 	
 }
