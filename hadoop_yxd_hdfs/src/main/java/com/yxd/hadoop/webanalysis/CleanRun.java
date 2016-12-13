@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.Counters;
 
-import com.yxd.hadoop.webanalysis.SystemUtil;
 import com.yxd.hadoop.webanalysis.PvReducer;
 import com.yxd.hadoop.webanalysis.PvMapper;
 public class CleanRun {
