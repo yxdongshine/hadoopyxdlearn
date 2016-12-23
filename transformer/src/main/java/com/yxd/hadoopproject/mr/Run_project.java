@@ -21,8 +21,6 @@ import org.apache.hadoop.util.ToolRunner;
 
 import com.ibeifeng.transformer.common.EventLogConstants;
 import com.ibeifeng.transformer.common.GlobalConstants;
-import com.ibeifeng.transformer.mr.etl.AnalysisDataMapper;
-import com.ibeifeng.transformer.mr.etl.AnalysisDataRunner;
 import com.ibeifeng.transformer.util.TimeUtil;
 
 public class Run_project implements Tool{
@@ -97,7 +95,7 @@ public class Run_project implements Tool{
 
 		// windows本地运行，需要使用下面代码, addDependencyJars参数要求为false
 		 TableMapReduceUtil.initTableReducerJob(tableName, null, job, null,
-		 null, null, null, false);
+		 null, null, null, true);
 
 		// 更新hbase中对应表结构
 		// 存在就删除，然后新建
