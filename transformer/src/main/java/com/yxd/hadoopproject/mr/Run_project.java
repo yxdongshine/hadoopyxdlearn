@@ -17,6 +17,7 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
 
 import com.ibeifeng.transformer.common.EventLogConstants;
 import com.ibeifeng.transformer.common.GlobalConstants;
@@ -199,4 +200,33 @@ public class Run_project implements Tool{
 		conf.set(GlobalConstants.RUNNING_DATE_PARAMES, date);
 	}
 
+	
+	
+	/**
+	 * main方法，执行入口
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		test1(args); // 本地运行和集群运行
+	}
+
+	/**
+	 * 正常运行
+	 * 
+	 * @param args
+	 */
+	public static void test1(String[] args) {
+		try {
+			// 调用执行
+			int exitCode = ToolRunner.run(new Run_project(), args);
+			if (exitCode == 0) {
+				System.out.println("运行成功");
+			} else {
+				System.out.println("运行失败");
+			}
+		} catch (Exception e) {
+			System.err.println("job运行异常" + e);
+		}
+	}
 }
