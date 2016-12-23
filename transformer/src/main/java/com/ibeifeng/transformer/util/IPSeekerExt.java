@@ -29,7 +29,7 @@ public class IPSeekerExt extends IPSeeker {
 //	private static final String ipFilePath = "ip/qqwry.dat";
 	// HDFS路径
 	 private static final String ipFilePath =
-	 "hdfs://hadoop-senior01:8020/ips/qqwry.dat";
+	 "hdfs://hadoop1:9000/ips/qqwry.dat";
 
 	/**
 	 * 用于单例对象的属性
