@@ -17,8 +17,18 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-  <property>
-    <name>fs.defaultFS</name>
-    <value>hdfs://hadoop-senior01:8020</value>
-  </property>
+      <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop1:9000</value>
+    </property>
+	
+	 <property>
+	     <name>hadoop.tmp.dir</name>
+	     <value>/opt/module/hadoop-2.5.0/data/tmp</value>
+    </property>
+	
+	<property>
+        <name>hadoop.http.staticuser.user</name>
+        <value>hadoop</value>
+    </property>
 </configuration>

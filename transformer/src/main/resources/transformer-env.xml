@@ -14,7 +14,7 @@
 	<property>
 		<name>mysql.report.url</name>
 		<value>
-			jdbc:mysql://hadoop-senior01:3306/report?useUnicode=true&amp;characterEncoding=utf8
+			jdbc:mysql://hadoop1:3306/report?useUnicode=true&amp;characterEncoding=utf8
 		</value>
 	</property>
 

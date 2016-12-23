@@ -21,24 +21,55 @@
  */
 -->
 <configuration>
-  <property>
-    <name>hbase.rootdir</name>
-    <value>hdfs://hadoop-senior01:8020/hbase</value>
-  </property>
-  <property>
-    <name>hbase.cluster.distributed</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>dfs.replication</name>
-    <value>1</value>
-  </property>
-  <property>
-    <name>hbase.zookeeper.property.dataDir</name>
-    <value>/opt/modules/hbase-0.98.6-cdh5.3.6/tmp/zk</value>
-  </property>
-  <property>
-    <name>hbase.zookeeper.quorum</name>
-    <value>hadoop-senior01</value>
-  </property>
+        <property >
+		    <name>hbase.tmp.dir</name>
+			<value>/opt/module/hbase-0.98.6-hadoop2/datas</value>
+		</property>
+		<property >
+			<name>hbase.rootdir</name>
+			<value>hdfs://hadoop1:9000/hbase</value>
+		</property>
+		<property >
+			<name>hbase.cluster.distributed</name>
+			<value>true</value>
+		</property>
+		<property>
+			<name>hbase.zookeeper.quorum</name>
+			<value>hadoop1</value>
+	    </property>
+	    <property>
+            <name>hbase.master</name>
+             <value>hdfs://hadoop1:60000</value>
+         </property>
+		 
+		  <!-- regionserver-->
+		 <property>
+		  <name>hbase.regionserver.wal.codec</name>
+		  <value>org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec</value>
+		</property>
+		<!--<property>
+		  <name>hbase.region.server.rpc.scheduler.factory.class</name>
+		  <value>org.apache.hadoop.hbase.ipc.PhoenixIndexRpcScheduler</value>
+		  <description>Factory to create the Phoenix RPC Scheduler that uses separate queues for index and metadata updates</description>
+		</property>
+		 <property>
+		  <name>hbase.rpc.controllerfactory.class</name>
+		  <value>org.apache.hadoop.hbase.ipc.controller.ServerRpcControllerFactory</value>
+		  <description>Factory to create the Phoenix RPC Scheduler that uses separate queues for index and metadata updates</description>
+		</property>
+		<property>
+		  <name>hbase.coprocessor.regionserver.classes</name>
+		  <value>org.apache.hadoop.hbase.regionserver.LocalIndexMerger</value>
+		</property>-->
+		 
+		 
+		 <!-- hmaster-->
+		 <property>
+		  <name>hbase.master.loadbalancer.class</name>
+		  <value>org.apache.phoenix.hbase.index.balancer.IndexLoadBalancer</value>
+		</property>
+		<property>
+		  <name>hbase.coprocessor.master.classes</name>
+		  <value>org.apache.phoenix.hbase.index.master.IndexMasterObserver</value>
+		</property>
 </configuration>
