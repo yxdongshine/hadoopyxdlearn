@@ -91,11 +91,11 @@ public class Run_project implements Tool{
 
 		// 指定输出, 当不存在reducer的时候，reducer对于参数设置为null
 		// 当本地提交集群运行的时候以及集群运行的时候，需要按照下面这行代码设置， addDependencyJars参数要求为true
-//		TableMapReduceUtil.initTableReducerJob(tableName, null, job);
+		//TableMapReduceUtil.initTableReducerJob(tableName, null, job);
 
 		// windows本地运行，需要使用下面代码, addDependencyJars参数要求为false
 		 TableMapReduceUtil.initTableReducerJob(tableName, null, job, null,
-		 null, null, null, true);
+		 null, null, null, false);
 
 		// 更新hbase中对应表结构
 		// 存在就删除，然后新建
