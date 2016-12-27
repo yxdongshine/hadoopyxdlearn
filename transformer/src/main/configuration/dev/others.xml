@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
 	<property>
-		<name>ibeifeng.transformer.local</name>
+		<name>hadoop.transformer.local</name>
 		<value>false</value>
 	</property>
 </configuration>
