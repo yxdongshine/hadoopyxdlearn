@@ -151,7 +151,6 @@ public class NewInstallUserMapper extends TableMapper<StatsUserDimension, Text> 
 				if (time >= this.startMonth && time < this.endMonth) {
 					statsCommonDimension.setDate(monthOfDateDimension);
 					context.write(this.outputKey, this.outputValue);
-					System.out.println("&yxd&&&&"+outputKey);
 				}
 			}
 		}
