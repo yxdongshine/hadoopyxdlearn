@@ -241,13 +241,12 @@ public class NewInstallUsersRunner implements Tool {
 		}
 
 		// 在linux集群运行的时候，采用下面的设置方式
-		// TableMapReduceUtil.initTableMapperJob(scans,
-		// NewInstallUsersMapper.class, StatsUserDimension.class, Text.class,
-		// job);
+		/* TableMapReduceUtil.initTableMapperJob(scans,
+				 NewInstallUserMapper.class, StatsUserDimension.class, Text.class,
+		 job);*/
 
 		// windows本地执行的时候采用下面的方式，addDependencyJars设置为true
-		TableMapReduceUtil.initTableMapperJob(scans, NewInstallUserMapper.class, StatsUserDimension.class, Text.class,
-				job, true);
+		TableMapReduceUtil.initTableMapperJob(scans, NewInstallUserMapper.class, StatsUserDimension.class, Text.class, job, false);
 	}
 
 	/**
