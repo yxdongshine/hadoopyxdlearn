@@ -126,6 +126,7 @@ public class NewInstallUserMapper extends TableMapper<StatsUserDimension, Text> 
 				statsCommonDimension.setDate(monthOfDateDimension);
 				context.write(this.outputKey, this.outputValue);
 			}
+			System.out.println("pl&&&"+outputKey);
 
 			// 4.3 开始stats_device_browser数据的输出
 			// 4.3.1 给定一个标志的KPI维度
@@ -152,8 +153,13 @@ public class NewInstallUserMapper extends TableMapper<StatsUserDimension, Text> 
 					statsCommonDimension.setDate(monthOfDateDimension);
 					context.write(this.outputKey, this.outputValue);
 				}
+				
+				System.out.println("br&&&"+outputKey);
+
 			}
 		}
+		
+		System.out.println("comeherer");
 	}
 
 	/**
